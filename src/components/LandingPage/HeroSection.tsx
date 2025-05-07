@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Hero1 from '../../assets/img/hero1.jpg';
+import Hero2 from '../../assets/img/hero2.jpg';
+import Hero3 from '../../assets/img/hero3.jpg';
 
 const HeroSection = () => {
   const images = [
     {
-      src: './src/assets/img/hero1.jpg',
+      src: Hero1,
       title: 'Restaurant Services',
       description: 'Enjoy 20% off on all restaurant services!',
     },
     {
-      src: './src/assets/img/hero2.jpg',
+      src: Hero2,
       title: 'Groceries',
       description: 'Fresh groceries delivered to your doorstep. Save 15% today!',
     },
     {
-      src: './src/assets/img/hero3.jpg',
+      src: Hero3,
       title: 'Grill Services',
       description: 'Get 25% off on all grill services this weekend!',
     },

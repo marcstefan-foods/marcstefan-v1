@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import logo from '../../assets/img/logoiconms.png'; // Adjust the path as necessary
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
         <div className="w-full md:w-1/3">
           {/* Logo */}
           <div className="mb-2">
-            <img src="./src/assets/img/logoiconms.png" alt="Logo" className="w-12 h-12" />
+            <img src={logo} alt="Logo" className="w-12 h-12" />
           </div>
 
           {/* Small Text Details */}

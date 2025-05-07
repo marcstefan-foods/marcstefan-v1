@@ -1,4 +1,5 @@
 import React from 'react';
+import cater1 from '../../assets/img/cater1.jpg';
 
 const CateringServices = () => {
   return (
@@ -10,8 +11,7 @@ const CateringServices = () => {
       <div className="bg-white shadow-lg rounded-lg border border-gray-300 relative flex flex-col items-center p-4 md:p-10 md:px-12 px-6 ap-6">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img
-            src="./src/assets/img/cater1.jpg"
+         <img src={cater1}
             alt="Catering Service"
             className="w-full h-full object-cover rounded-lg"
           />

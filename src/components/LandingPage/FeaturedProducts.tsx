@@ -1,6 +1,16 @@
 import React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import GrilledChicken from '../../assets/img/grilledchicken.jpg';
+import Salad from '../../assets/img/salad.jpg';
+import Burger from '../../assets/img/burger.jpg';
+import PizzaSlice from '../../assets/img/pizzaslice.jpg';
+import Pasta from '../../assets/img/pasta.jpg';
+import GrilledFish from '../../assets/img/grilledfish.jpg';
+import Juice from '../../assets/img/juice.jpg';
+import Cupcake from '../../assets/img/cupcake.jpg';
+import ChocolateCake from '../../assets/img/chocolatecake.jpg';
+import IceCream from '../../assets/img/icecream.jpg';
 
 const FeaturedProducts = () => {
   const products = [
@@ -8,67 +18,67 @@ const FeaturedProducts = () => {
       id: 1,
       name: 'Grilled Chicken',
       price: '₦2,500',
-      image: './src/assets/img/grilledchicken.jpg',
+      image: GrilledChicken,
       label: '20% Off',
     },
     {
       id: 2,
       name: 'Fresh Salad',
       price: '₦1,800',
-      image: './src/assets/img/salad.jpg',
+      image: Salad,
       label: 'New',
     },
     {
       id: 3,
       name: 'Burger Combo',
       price: '₦3,200',
-      image: './src/assets/img/burger.jpg',
+      image: Burger,
     },
     {
       id: 4,
       name: 'Pizza Slice',
       price: '₦1,200',
-      image: './src/assets/img/pizzaslice.jpg',
+      image: PizzaSlice,
       label: '10% Off',
     },
     {
       id: 5,
       name: 'Pasta Bowl',
       price: '₦2,000',
-      image: './src/assets/img/pasta.jpg',
+      image: Pasta,
     },
     {
       id: 6,
       name: 'Grilled Fish',
       price: '₦3,500',
-      image: './src/assets/img/grilledfish.jpg',
+      image: GrilledFish,
       label: 'New',
     },
     {
       id: 7,
       name: 'Fruit Juice',
       price: '₦1,000',
-      image: './src/assets/img/juice.jpg',
+      image: Juice,
     },
     {
       id: 8,
       name: 'Cupcake',
       price: '₦800',
-      image: './src/assets/img/cupcake.jpg',
+      image: Cupcake,
       label: '15% Off',
     },
     {
       id: 9,
       name: 'Chocolate Cake',
       price: '₦3,000',
-      image: './src/assets/img/chocolatecake.jpg',
+      image: ChocolateCake,
       label: 'New',
     },
     {
       id: 10,
       name: 'Ice Cream',
       price: '₦1,500',
-      image: './src/assets/img/icecream.jpg',
+      image: IceCream,
     },
   ];
 

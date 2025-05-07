@@ -3,6 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
+import logo from '../../assets/img/logoiconms.png';
 
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
      {/* Logo */}
         <div className="flex items-center pl-2 md:pl-10">
                 <img
-                src="./src/assets/img/logoiconms.png"
+                src={logo}
                 alt="Logo"
                 className="h-16 w-16"
                 />
