@@ -107,7 +107,7 @@ const FeaturedProducts = () => {
               </div>
               {/* Label */}
               {product.label && (
-                <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs px-1.5 py-0.5 rounded-xl">
+                <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs px-1.5 py-0.5 rounded-xl animate-pulse">
                   {product.label}
                 </div>
               )}
