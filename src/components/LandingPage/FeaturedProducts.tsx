@@ -88,7 +88,7 @@ const FeaturedProducts = () => {
       <h2 className="text-2xl pl-2 font-bold mb-6">Featured Products</h2>
 
       {/* Products Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-2 md:gap-4">
         {products.map((product) => (
           <div
             key={product.id}
