@@ -1,15 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import OutdoorGrillIcon from '@mui/icons-material/OutdoorGrill';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 
 const Categories = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const categories = [
     {
       name: 'Restaurant',
       icon: <RestaurantIcon fontSize="large" className="text-green-700 animate-bounce" />,
       description: 'Explore our restaurant services.',
+      onClick: () => navigate('/restaurant'), // Navigate to the Restaurant page
     },
     {
       name: 'Groceries',
@@ -38,7 +42,8 @@ const Categories = () => {
         {categories.map((category, index) => (
           <div
             key={index}
-            className="bg-white shadow-lg rounded-lg border border-gray-400 p-4 flex flex-col items-center text-center hover:shadow-lg hover:scale-105 transition-transform duration-300"
+            className="bg-white shadow-lg rounded-lg border border-gray-400 p-4 flex flex-col items-center text-center hover:shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+            onClick={category.onClick} 
           >
             {/* Icon */}
             <div className="mb-3">{category.icon}</div>
