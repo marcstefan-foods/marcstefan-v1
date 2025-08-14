@@ -1,7 +1,7 @@
 import React from 'react';
-import { FaStar, FaClock, FaMapMarkerAlt, FaArrowLeft } from 'react-icons/fa';
+import { FaStar, FaClock, FaMapMarkerAlt, FaArrowLeft, FaSearch, FaFilter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; 
-import Restuarant from '../../assets/img/restuarant.jpg';
+import Groceries from '../../assets/img/herogroceries.jpg';
 
 const HeroSection = () => {
   const navigate = useNavigate(); 
@@ -12,12 +12,12 @@ const HeroSection = () => {
       <div className="relative w-full h-[300px] md:h-[400px]">
         {/* Background Image */}
         <img
-          src={Restuarant}
+          src={Groceries}
           alt="Restaurant Hero"
           className="w-full h-full object-cover"
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
 
         {/* Back to Home Button */}
         <div className="absolute top-4 left-2 sm:left-8 pl-2 sm:pl-10 z-50">
@@ -34,14 +34,13 @@ const HeroSection = () => {
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 md:px-14">
           {/* Header */}
           <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center mt-10">
-            MarcStefan Restaurant
+            Fresh Groceries
           </h1>
 
           {/* Description */}
           <p className="text-sm md:text-base text-center max-w-2xl mb-6">
-            Experience the finest dining with our exquisite menu, crafted to
-            perfection. Enjoy a blend of flavors that will tantalize your taste
-            buds.
+            Shop for fresh, high-quality groceries delivered straight to your door.
+            We source the best local and organic products to ensure you get the freshest ingredients for your kitchen.
           </p>
 
           {/* Info Row */}
@@ -53,16 +52,9 @@ const HeroSection = () => {
               <span className="text-sm text-gray-300">(120 reviews)</span>
             </div>
 
-            {/* Delivery Time */}
             <div className="flex items-center gap-2">
               <FaClock />
-              <span className="text-sm">30-40 mins</span>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-center gap-2">
-              <FaMapMarkerAlt />
-              <span className="text-sm">2.5 miles away</span>
+              <span className="text-sm">Free delivery on orders above #10,000</span>
             </div>
           </div>
 
@@ -72,13 +64,17 @@ const HeroSection = () => {
               Order Now
             </button>
             <button className="bg-gray-200 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-300 transition">
-              View Menu
+              Weekly Specials
             </button>
           </div>
         </div>
       </div>
+
+      
     </div>
   );
 };
 
 export default HeroSection;
+
+

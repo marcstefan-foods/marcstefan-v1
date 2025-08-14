@@ -131,14 +131,14 @@ const OurMenu = () => {
 
   return (
     <div>
-      <div className="px-8 py-4 md:px-14">
-        <h2 className="text-2xl font-bold mb-6 pl-2">Our Menu</h2>
+      <div className="px-4 py-4 md:px-8 lg:px-14">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 pl-2 text-center md:text-left">Our Menu</h2>
         {/* Navigation Bar */}
-        <div className="flex bg-gray-100 rounded-md mb-8 h-12 items-center px-2">
+        <div className="flex flex-wrap bg-gray-100 rounded-md mb-8 h-auto min-h-[48px] items-center px-2 justify-center md:justify-start">
           {categories.map(cat => (
             <button
               key={cat.key}
-              className={`mx-2 px-4 py-1 rounded-full text-sm font-semibold transition ${
+              className={`mx-2 my-2 px-4 py-1 rounded-full text-sm font-semibold transition ${
                 activeCategory === cat.key
                   ? 'bg-yellow-500 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-yellow-100'
@@ -152,12 +152,12 @@ const OurMenu = () => {
         {/* Menu Items Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
           {items.map((item, idx) => (
-            <div key={`${item.name}-${idx}`} className="bg-white shadow rounded-lg p-6 flex flex-row items-center">
+            <div key={`${item.name}-${idx}`} className="bg-white shadow rounded-lg p-4 md:p-6 flex flex-row items-center">
               {/* Content */}
               <div className="flex-1 flex flex-col items-start">
                 <h3 className="font-bold text-lg mb-2">{item.name}</h3>
                 <p className="text-gray-600 mb-2">{item.desc}</p>
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex flex-wrap items-center gap-3 mb-2">
                   <span className="font-semibold text-green-700">{item.price}</span>
                   <span className="text-yellow-500 flex items-center">
                     {item.rating && (
@@ -171,7 +171,7 @@ const OurMenu = () => {
                   </span>
                   <span className="text-gray-400 text-xs">{item.prepTime}</span>
                 </div>
-                <button className="mt-2 bg-yellow-500 text-white px-4 py-1 rounded hover:bg-yellow-600 transition font-semibold text-sm">
+                <button className="mt-2 bg-yellow-500 text-white px-4 py-1 rounded hover:bg-yellow-600 transition font-semibold text-sm w-full">
                   Add to Cart
                 </button>
               </div>

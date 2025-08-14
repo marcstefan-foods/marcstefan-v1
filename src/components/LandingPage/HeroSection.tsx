@@ -42,7 +42,7 @@ const HeroSection = () => {
         style={{ backgroundImage: `url(${images[currentIndex].src})` }}
       >
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/100 via-transparent to-transparent"></div>
 
         {/* Text Overlay */}
         <div className="absolute top-1/4 left-12 md:left-16 text-white max-w-sm drop-shadow-lg md:drop-shadow-lg">

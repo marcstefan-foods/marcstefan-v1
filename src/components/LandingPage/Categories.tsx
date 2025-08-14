@@ -19,6 +19,7 @@ const Categories = () => {
       name: 'Groceries',
       icon: <ShoppingCartIcon fontSize="large" className="text-green-700 animate-bounce" />,
       description: 'Fresh groceries delivered to you.',
+      onClick: () => navigate('/groceries'), // Navigate to the Groceries page
     },
     {
       name: 'Grills',
@@ -29,6 +30,7 @@ const Categories = () => {
       name: 'Catering',
       icon: <CelebrationIcon fontSize="large" className="text-green-700 animate-bounce" />,
       description: 'Catering services for all events.',
+      onClick: () => navigate('/catering'), // Navigate to the Catering page
     },
   ];
 
