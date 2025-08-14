@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar, FaClock, FaMapMarkerAlt, FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; 
-import Restuarant from '../../assets/img/cater1.jpg';
+import Restuarant from '../../assets/img/cater5.jpg';
 
 const HeroSection = () => {
   const navigate = useNavigate(); 
@@ -16,8 +16,7 @@ const HeroSection = () => {
           alt="Restaurant Hero"
           className="w-full h-full object-cover"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+        
 
         {/* Back to Home Button */}
         <div className="absolute top-4 left-2 sm:left-8 pl-2 sm:pl-10 z-50">

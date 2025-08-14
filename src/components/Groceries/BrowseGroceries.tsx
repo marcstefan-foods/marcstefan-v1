@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
-
-// Import one image for all groceries
+import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import groceriesImg from '../../assets/img/herogroceries.jpg';
 
-const categories = [
+// ---- Types ----
+type CategoryKey =
+  | 'All Products'
+  | 'Fruits and Vegetables'
+  | 'Dairy and Eggs'
+  | 'Bakery'
+  | 'Meat and Seafood'
+  | 'Pantry';
+
+type GroceryItem = {
+  name: string;
+  desc: string;
+  brand: string;
+  price: string;
+  organic?: boolean;
+  discount?: number; // % off
+};
+
+// ---- Categories ----
+const categories: { key: CategoryKey; label: string }[] = [
   { key: 'All Products', label: 'All Products' },
   { key: 'Fruits and Vegetables', label: 'Fruits and Vegetables' },
   { key: 'Dairy and Eggs', label: 'Dairy and Eggs' },
@@ -12,16 +30,8 @@ const categories = [
   { key: 'Pantry', label: 'Pantry' },
 ];
 
-type GroceryItem = {
-  name: string;
-  desc: string;
-  brand: string;
-  price: string;
-  organic?: boolean;
-  discount?: number; // percentage off
-};
-
-const groceryItems: { [key: string]: GroceryItem[] } = {
+// ---- Items ----
+const groceryItems: Record<CategoryKey, GroceryItem[]> = {
   'All Products': [
     { name: 'Eggs', desc: 'Crate of 30 eggs', brand: 'FarmFresh', price: '₦2,500', organic: true, discount: 10 },
     { name: 'Vegetable Oil', desc: '1.5 Liters', brand: 'Devon Kings', price: '₦3,200', discount: 5 },
@@ -80,11 +90,36 @@ const groceryItems: { [key: string]: GroceryItem[] } = {
   ],
 };
 
-const BrowseGroceries = () => {
-  const [activeCategory, setActiveCategory] = useState(categories[0].key);
-  const [counts, setCounts] = useState<{ [key: string]: number }>({});
+const BrowseGroceries: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>(categories[0].key);
+  const [counts, setCounts] = useState<Record<string, number>>({});
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+
+  // Responsive items per page
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      const w = window.innerWidth;
+      if (w < 640) setItemsPerPage(4);         // mobile
+      else if (w < 1024) setItemsPerPage(6);   // tablet
+      else setItemsPerPage(8);                 // desktop
+    };
+    updateItemsPerPage();
+    window.addEventListener('resize', updateItemsPerPage);
+    return () => window.removeEventListener('resize', updateItemsPerPage);
+  }, []);
 
   const items = groceryItems[activeCategory] || [];
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  // Reset page when category or itemsPerPage changes
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [activeCategory, itemsPerPage]);
+
+  const handlePageClick = ({ selected }: { selected: number }) => {
+    setCurrentPage(selected);
+  };
 
   const handleCountChange = (itemKey: string, delta: number) => {
     setCounts(prev => ({
@@ -93,88 +128,129 @@ const BrowseGroceries = () => {
     }));
   };
 
+  const currentItems = items.slice(
+    currentPage * itemsPerPage,
+    currentPage * itemsPerPage + itemsPerPage
+  );
+
   return (
-    <div>
-      <div className="px-4 py-4 md:px-8 lg:px-14">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 pl-2 text-center md:text-left mt-6">Groceries</h2>
-        {/* Navigation Bar */}
-        <div className="flex flex-wrap bg-gray-100 rounded-md mb-8 h-auto min-h-[48px] items-center px-2 justify-center md:justify-start">
-          {categories.map(cat => (
-            <button
-              key={cat.key}
-              className={`mx-2 my-2 px-4 py-1 rounded-full text-sm font-semibold transition ${
-                activeCategory === cat.key
-                  ? 'bg-yellow-500 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-yellow-100'
-              }`}
-              onClick={() => setActiveCategory(cat.key)}
+    <div className="px-4 py-4 md:px-8 lg:px-14">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-left mt-6">
+        Groceries
+      </h2>
+
+      {/* Category Tabs */}
+      <div className="flex flex-wrap bg-gray-100 rounded-md mb-6 min-h-[48px] items-center px-2 justify-center md:justify-start">
+        {categories.map(cat => (
+          <button
+            key={cat.key}
+            className={`mx-2 my-2 px-4 py-1 rounded-full text-sm font-semibold transition ${
+              activeCategory === cat.key
+                ? 'bg-yellow-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-yellow-100'
+            }`}
+            onClick={() => setActiveCategory(cat.key)}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Items Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        {currentItems.map((item) => {
+          const itemKey = `${item.name}-${item.brand}`;
+          const count = counts[itemKey] || 1;
+
+          // Keep labels stable per item by seeding with itemKey
+          const seeded = itemKey.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+          const showOrganic = Boolean(item.organic && (seeded % 2 === 0));
+          const showDiscount = Boolean(item.discount && (seeded % 3 === 0));
+
+          return (
+            <div
+              key={itemKey}
+              className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition flex flex-col h-full"
             >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-        {/* Groceries Items Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-2 md:gap-4">
-          {items.map((item, idx) => {
-            const itemKey = `${item.name}-${item.brand}`;
-            const count = counts[itemKey] || 1;
-            // Randomly show organic or discount label
-            const showOrganic = item.organic && Math.random() > 0.5;
-            const showDiscount = item.discount && Math.random() > 0.5;
-            return (
-              <div
-                key={itemKey}
-                className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300 hover:shadow-xl transition-shadow duration-300 flex flex-col min-h-[220px] max-h-[240px]"
-              >
-                {/* Image Section */}
-                <div className="relative">
-                  <img
-                    src={groceriesImg}
-                    alt={item.name}
-                    className="w-full h-28 object-cover"
-                  />
-                  {/* Organic/Discount Labels */}
-                  {(showOrganic || showDiscount) && (
-                    <div className="absolute top-2 left-2 flex gap-2 z-10">
-                      {showOrganic && (
-                        <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">Organic</span>
-                      )}
-                      {showDiscount && (
-                        <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">{item.discount}% OFF</span>
-                      )}
-                    </div>
+              {/* Image */}
+              <div className="relative">
+                <img src={groceriesImg} alt={item.name} className="w-full h-28 object-cover" />
+                <div className="absolute top-2 left-2 flex gap-2">
+                  {showOrganic && (
+                    <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full">
+                      Organic
+                    </span>
+                  )}
+                  {showDiscount && (
+                    <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">
+                      {item.discount}% OFF
+                    </span>
                   )}
                 </div>
-                {/* Product Details */}
-                <div className="p-2 text-left flex flex-col justify-between flex-1">
-                  <h3 className="text-sm font-semibold mb-1">{item.name}</h3>
-                  <div className="flex items-center justify-between mb-1">
-                    <p className="text-gray-600 text-xs">{item.desc}</p>
-                    <span className="font-semibold text-green-700 ml-2">{item.price}</span>
-                  </div>
-                  <p className="text-gray-500 text-xs mb-2">{item.brand}</p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-center gap-2">
-                      <button
-                        className="bg-gray-200 px-2 py-1 rounded text-lg font-bold"
-                        onClick={() => handleCountChange(itemKey, -1)}
-                      >-</button>
-                      <span className="font-semibold">{count}</span>
-                      <button
-                        className="bg-gray-200 px-2 py-1 rounded text-lg font-bold"
-                        onClick={() => handleCountChange(itemKey, 1)}
-                      >+</button>
-                    </div>
-                    <button className="bg-yellow-500 text-black text-sm px-3 py-1 rounded-md flex items-center justify-center gap-2 hover:bg-yellow-600 transition whitespace-nowrap ml-2">
-                      Add to Cart
+              </div>
+
+              {/* Content */}
+              <div className="p-2 flex flex-col justify-between flex-1">
+                <div>
+                  <h3 className="text-sm font-semibold leading-tight">{item.name}</h3>
+                  <p className="text-gray-600 text-xs">{item.desc}</p>
+                  <p className="text-gray-500 text-xs">{item.brand}</p>
+                  <span className="font-semibold text-green-700">{item.price}</span>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center justify-between mt-2">
+                  <div className="flex items-center gap-2">
+                    <button
+                      aria-label={`Decrease ${item.name} quantity`}
+                      className="bg-gray-200 px-2 py-1 rounded font-bold"
+                      onClick={() => handleCountChange(itemKey, -1)}
+                    >
+                      -
+                    </button>
+                    <span className="min-w-[1.25rem] text-center">{count}</span>
+                    <button
+                      aria-label={`Increase ${item.name} quantity`}
+                      className="bg-gray-200 px-2 py-1 rounded font-bold"
+                      onClick={() => handleCountChange(itemKey, 1)}
+                    >
+                      +
                     </button>
                   </div>
+                  <button
+                    className="bg-yellow-500 text-black text-xs px-3 py-1 rounded hover:bg-yellow-600 transition whitespace-nowrap"
+                    onClick={() => {/* add to cart handler here */}}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
+
+      {/* Pagination */}
+      {pageCount > 1 && (
+        <div className="mt-6 flex justify-center">
+          <ReactPaginate
+            previousLabel="← Prev"
+            nextLabel="Next →"
+            breakLabel="..."
+            onPageChange={handlePageClick}
+            pageCount={pageCount}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={2}
+            containerClassName="flex gap-2 flex-wrap"
+            pageClassName="px-3 py-1 border rounded"
+            breakClassName="px-3 py-1 border rounded"
+            activeClassName="bg-yellow-500 text-white"
+            previousClassName="px-3 py-1 border rounded"
+            nextClassName="px-3 py-1 border rounded"
+            disabledClassName="opacity-50 cursor-not-allowed"
+          />
+        </div>
+      )}
     </div>
   );
 };
