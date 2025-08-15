@@ -25,6 +25,7 @@ const Categories = () => {
       name: 'Grills',
       icon: <OutdoorGrillIcon fontSize="large" className="text-green-700 animate-bounce" />,
       description: 'Delicious grilled meals.',
+      onClick: () => navigate('/grills'), // Navigate to the Grills page
     },
     {
       name: 'Catering',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar, FaClock, FaMapMarkerAlt, FaArrowLeft, FaSearch, FaFilter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; 
-import Restuarant from '../../assets/img/restuarant.jpg';
+import Groceries from '../../assets/img/grills.jpg';
 
 const HeroSection = () => {
   const navigate = useNavigate(); 
@@ -12,7 +12,7 @@ const HeroSection = () => {
       <div className="relative w-full h-[350px] md:h-[450px]">
         {/* Background Image */}
         <img
-          src={Restuarant}
+          src={Groceries}
           alt="Restaurant Hero"
           className="w-full h-full object-cover"
         />
@@ -33,13 +33,12 @@ const HeroSection = () => {
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 md:px-14 text-shadow-black">
           {/* Header */}
           <h1 className="text-2xl md:text-5xl font-bold mb-3 text-center mt-10">
-           MarcStefan Restuarant
+           MarcStefan Grills
           </h1>
 
           {/* Description */}
           <p className="text-base md:text-base text-center max-w-lg mb-3">
-            Experience the finest dining with our exquisite menu, a blend of flavors 
-            that will tantalize your taste buds.
+            Experience the finest grills menu offers prepared with premium ingredients and expert technique.
           </p>
 
           {/* Info Row */}
@@ -56,12 +55,6 @@ const HeroSection = () => {
               <FaClock />
               <span className="text-base md:text-sm">30-40 Mins Delivery</span>
             </div>  
-
-             {/* Location */}
-            <div className="flex items-center gap-2">
-              <FaMapMarkerAlt />
-              <span className="text-sm">2.5 miles away</span>
-            </div>
           </div>
 
           {/* Buttons */}
@@ -70,7 +63,7 @@ const HeroSection = () => {
               Order Now
             </button>
             <button className="bg-gray-200 text-base text-gray-700 px-4 py-0.5 rounded-md hover:bg-gray-300 transition">
-              View Menu
+              Weekly Specials
             </button>
           </div>
         </div>

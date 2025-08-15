@@ -3,9 +3,9 @@ import { FaLeaf, FaTruck, FaShippingFast } from 'react-icons/fa';
 
 const DeliveryInfo = () => {
   return (
-    <div className="w-full bg-white py-8 px-4 md:px-14">
+    <div className=" bg-white py-8 px-4 md:px-14">
       <h2 className="text-2xl font-bold mb-8 text-center">Delivery Information</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
         {/* Fresh Guarantee */}
         <div className="flex flex-col items-center bg-white rounded-lg shadow-md p-6">
           <FaLeaf className="text-green-500 text-4xl mb-3" />

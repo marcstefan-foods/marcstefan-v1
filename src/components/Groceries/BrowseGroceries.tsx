@@ -203,7 +203,7 @@ const BrowseGroceries: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <button
                       aria-label={`Decrease ${item.name} quantity`}
-                      className="bg-gray-200 px-2 py-1 rounded font-bold"
+                      className="bg-gray-200 px-1 py-0.5 rounded font-bold"
                       onClick={() => handleCountChange(itemKey, -1)}
                     >
                       -
@@ -211,7 +211,7 @@ const BrowseGroceries: React.FC = () => {
                     <span className="min-w-[1.25rem] text-center">{count}</span>
                     <button
                       aria-label={`Increase ${item.name} quantity`}
-                      className="bg-gray-200 px-2 py-1 rounded font-bold"
+                      className="bg-gray-200 px-1 py-0.5 rounded font-bold"
                       onClick={() => handleCountChange(itemKey, 1)}
                     >
                       +
@@ -221,7 +221,7 @@ const BrowseGroceries: React.FC = () => {
                     className="bg-yellow-500 text-black text-xs px-3 py-1 rounded hover:bg-yellow-600 transition whitespace-nowrap"
                     onClick={() => {/* add to cart handler here */}}
                   >
-                    Add to Cart
+                    Add
                   </button>
                 </div>
               </div>

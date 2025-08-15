@@ -1,7 +1,7 @@
 import React from 'react';
-import { FaStar, FaClock, FaMapMarkerAlt, FaArrowLeft } from 'react-icons/fa';
+import { FaStar, FaClock, FaMapMarkerAlt, FaArrowLeft, FaSearch, FaFilter } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; 
-import Restuarant from '../../assets/img/cater5.jpg';
+import Catering from '../../assets/img/cater5.jpg';
 
 const HeroSection = () => {
   const navigate = useNavigate(); 
@@ -9,11 +9,11 @@ const HeroSection = () => {
   return (
     <div className="bg-gray-100">
       {/* Hero Section */}
-      <div className="relative w-full h-[300px] md:h-[400px]">
+      <div className="relative w-full h-[350px] md:h-[450px]">
         {/* Background Image */}
         <img
-          src={Restuarant}
-          alt="Restaurant Hero"
+          src={Catering}
+          alt="Catering Hero"
           className="w-full h-full object-cover"
         />
         
@@ -30,46 +30,51 @@ const HeroSection = () => {
         </div>
 
         {/* Text Overlay */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 md:px-14">
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 md:px-14 text-shadow-black">
           {/* Header */}
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center mt-10">
-           Catering Services
+          <h1 className="text-2xl md:text-5xl font-bold mb-2 text-center mt-10">
+           Catering Service
           </h1>
 
           {/* Description */}
-          <p className="text-sm md:text-base text-center max-w-2xl mb-6">
-            From intimate gathering to grand celebrations, our catering services provide exceptional foods and impeccable for any occasion.
-            Let us make your event unforgettable with our culinary expertise.
+          <p className="text-base md:text-base text-center max-w-lg mb-2">
+            From intimate gathering to grand celebrations, our catering services
+            provide exceptional foods and impeccable for any occasion.
           </p>
 
           {/* Info Row */}
-          <div className="flex flex-wrap justify-center gap-6 mb-6">
+          <div className="flex flex-wrap justify-center gap-3 mb-4">
             {/* Ratings */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <FaStar className="text-yellow-500" />
-              <span className="text-sm">4.8</span>
-              <span className="text-sm text-gray-300">(120 reviews)</span>
+              <span className="text-base md:text-sm">4.8</span>
+              <span className="text-base md:text-sm text-white">(120 reviews)</span>
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* Delivery Time */}
+            <div className="flex items-center gap-1">
               <FaClock />
-              <span className="text-sm">Custom Menu Avaialable</span>
-            </div>
+              <span className="text-base md:text-sm">Custom Menu Available</span>
+            </div>  
           </div>
 
           {/* Buttons */}
           <div className="flex gap-4">
-            <button className="bg-yellow-500 text-black px-6 py-2 rounded-md hover:bg-yellow-600 transition">
+            <button className="bg-yellow-500 text-base text-black px-4 py-0.5 rounded-md hover:bg-yellow-600 transition">
               Order Service
             </button>
-            <button className="bg-gray-200 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-300 transition">
+            <button className="bg-gray-200 text-base text-gray-700 px-4 py-0.5 rounded-md hover:bg-gray-300 transition">
               View Packages
             </button>
           </div>
         </div>
       </div>
+
+      
     </div>
   );
 };
 
 export default HeroSection;
+
+

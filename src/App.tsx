@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage';
 import Restuarant from './pages/Restuarant'; 
 import Groceries from './pages/Groceries';
 import Catering from './pages/Catering';
+import Grills from './pages/Grills';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/restaurant" element={<Restuarant />} />
           <Route path="/groceries" element={<Groceries />} />
           <Route path="/catering" element={<Catering />} />
+          <Route path="/grills" element={<Grills />} />
         </Routes>
         </Layout>
       </Router>
